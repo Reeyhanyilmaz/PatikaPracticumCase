@@ -1,0 +1,19 @@
+.inputDiv {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  padding: 20px;
+}
+
+.input {
+  width: 50%;
+  border-radius: 5px;
+}
+
+.addButton {
+  margin-left: 20px;
+  background-color: cadetblue;
+  padding: 8px;
+  border-radius: 5px;
+  width: 80px;
+}

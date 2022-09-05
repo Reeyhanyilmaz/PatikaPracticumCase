@@ -1,0 +1,67 @@
+.todoDiv {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-content: center;
+  width: 100%; 
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-content: center;
+}
+
+.todoUl {
+  border: 1px solid;
+  border-radius: 5px;
+  margin: 5px 0;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  justify-content: flex-start;
+  width: 50%;
+}
+
+.todoUl li {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  font-size: 19px;
+  font-weight: 300;
+}
+
+.todoWrite {
+  width: 600px;
+}
+
+.iconSpan {
+  display: flex;
+  flex-direction: row;
+  width: 60px;
+  justify-content: space-around;
+}
+
+.editIcon {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.clearIcon {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 767px) {
+  .todoUl {
+    width: 90%;
+  }
+
+  /* li'nin yazı kısmı */
+  .todoWrite {
+    width: 200px;
+  }
+}
