@@ -1,53 +1,58 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import InputArea from "../Input";
-
-export function Delete({id, fetchData}) {
-  const deleteData = async (e) => {
-    const { data } = await axios.delete(
-      `https://6311aeb7f5cba498da835aac.mockapi.io/todos/${id}`
-    );
-    return data;
-  };
-
-  const handleClick = () => {
-    deleteData();
-    fetchData();
-  }
-
-  return (
-    <>
-      <span style={{cursor: "pointer"}} onClick={handleClick}>X</span>
-    </>
-  );
-}
+import Edit from "../Edit";
+import Delete from "../Delete";
+import "./style.css";
 
 function Todos() {
   const [todos, setTodos] = useState([]);
 
-  const fetchData = async () => {
+  //update state'lerim
+  const [isEditing, setIsEditing] = useState(false);
+  const [updateTodo, setUpdateTodo] = useState({});
+
+  //todo'ları çekiyorum.
+  const fetchTodos = async () => {
     const { data } = await axios.get(
       `https://6311aeb7f5cba498da835aac.mockapi.io/todos`
     );
-    // console.log("res", data);
     const todos = data;
     setTodos(todos);
   };
 
   useEffect(() => {
-    fetchData();
-  }, [todos]);
+    fetchTodos();
+  }, [todos, updateTodo]);
 
   return (
-    <div>
-      <InputArea fetchData={fetchData}/>
-      {todos.map((item, i) => (
-        <ul key={i}>
-          <li style={{display: "flex", justifyContent: "space-between", marginTop: 15}}>
-            {item.content} <Delete id={item.id} fetchData={fetchData}/>
-          </li>
-        </ul>
-      ))}
+    <div className="todoDiv">
+      <div className="container">
+        <InputArea
+          fetchTodos={fetchTodos}
+          isEditing={isEditing}
+          setIsEditing={setIsEditing}
+          updateTodo={updateTodo}
+          setUpdateTodo={setUpdateTodo}
+        />
+        {todos.map((todo, i) => (
+          <ul key={i} className="todoUl">
+            <li>
+              <span className="todoWrite">{todo.content}</span>
+
+              <span className="iconSpan">
+                <Edit
+                  todo={todo}
+                  setIsEditing={setIsEditing}
+                  updateTodo={updateTodo}
+                  setUpdateTodo={setUpdateTodo}
+                />
+                <Delete id={todo.id} fetchTodos={fetchTodos} />
+              </span>
+            </li>
+          </ul>
+        ))}
+      </div>
     </div>
   );
 }
