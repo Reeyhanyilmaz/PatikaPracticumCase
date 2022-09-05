@@ -1,37 +1,39 @@
 import React, { useState } from "react";
 import Swal from "sweetalert2";
+import "./style.css"
 
 function Header() {
-  const Swal = require("sweetalert2");
-  const [name, setName] = useState("");
+  const [name, setName] = useState(localStorage.getItem("name"));
 
   const handleClick = () => {
     Swal.fire({
-      title: "İsminizi Giriniz",
+      title: "Enter your name",
       input: "text",
       inputAttributes: {
         autocapitalize: "off",
       },
       showCancelButton: true,
-      confirmButtonText: "Ok",
+      confirmButtonText: "OK",
+      confirmButtonColor: "#5F9EA0",
       showLoaderOnConfirm: true,
       preConfirm: (name) => {
         setName(name);
+        localStorage.setItem("name", name)
       },
       allowOutsideClick: () => !Swal.isLoading(),
     });
   };
   return (
-    <div>
-      <h1>Todos</h1>
-      <h3>
-        Merhaba!{" "}
+    <div className="header">
+      <h1 className="h1">Todos</h1>
+      <h2>
+        Hello!{" "}
         {name ? (
-          name
+         name.toUpperCase()
         ) : (
-          <a onClick={handleClick}>İsim girmek için tıklayınız...</a>
+       <span><a onClick={handleClick}>Enter name...</a></span>   
         )}
-      </h3>
+      </h2>
     </div>
   );
 }
