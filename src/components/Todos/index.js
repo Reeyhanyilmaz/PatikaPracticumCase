@@ -7,10 +7,24 @@ import "./style.css";
 
 function Todos() {
   const [todos, setTodos] = useState([]);
+  console.log("todos :>> ", todos);
 
   //update state'lerim
   const [isEditing, setIsEditing] = useState(false);
   const [updateTodo, setUpdateTodo] = useState({});
+
+  const [checked, setChecked] = useState();
+  console.log("checked ", checked);
+
+  //checked
+  const handleChecked = (itemIndex) => {
+    todos.map((item, index) => {
+      if (itemIndex === index) {
+        item.isCompleted = !item.isCompleted;
+        setChecked(item.isCompleted);
+      }
+    });
+  };
 
   //todo'ları çekiyorum.
   const fetchTodos = async () => {
@@ -23,7 +37,7 @@ function Todos() {
 
   useEffect(() => {
     fetchTodos();
-  }, [todos, updateTodo]);
+  }, [updateTodo]);
 
   return (
     <div className="todoDiv">
@@ -37,8 +51,14 @@ function Todos() {
         />
         {todos.map((todo, i) => (
           <ul key={i} className="todoUl">
-            <li>
-              <span className="todoWrite">{todo.content}</span>
+            <li className={todo.isCompleted ? "checked" : ""}>
+              <input
+                type="checkbox"
+                className="checkBox"
+                onChange={() => handleChecked(i)}
+                checked={todo.isCompleted}
+              />
+              <p className="todoWrite">{todo.content}</p>
 
               <span className="iconSpan">
                 <Edit
