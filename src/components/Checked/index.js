@@ -1,34 +1,28 @@
 import React, { useState } from "react";
 import "./style.css";
-import axios from "axios";
+import { useTodo } from "../../context/TodoContext";
 
-function Checked({ todo, todos, i, fetchTodos }) {
-  const [checked, setChecked] = useState();
+//api
+import { checkedTodo } from "../../api";
+
+function Checked({ todo, i }) {
+  const [checked, setChecked] = useState(todo.isCompleted);
   console.log("checked ", checked);
 
-  const checkedTodo = async () => {
-    const { data } = await axios.put(
-      `https://6311aeb7f5cba498da835aac.mockapi.io/todos/${todo.id}`,
-      {
-        content: todo.content,
-        isCompleted: checked,
-        id: todo.id,
-      }
-    );
-    console.log("data", data);
-    return data;
+  //context
+  const { handleFetchTodos, setLoading } = useTodo();
+
+  //for checked button
+  const handleChecked = (itemIndex, i) => {
+    setLoading(true);
+    if (itemIndex === i) {
+      setChecked(!todo.isCompleted);
+      checkedTodo(todo, checked);
+      handleFetchTodos();
+    }
+    return todo;
   };
 
-  const handleChecked = (itemIndex) => {
-    todos.map((item, index) => {
-      if (itemIndex === index) {
-        item.isCompleted = !item.isCompleted;
-        setChecked(item.isCompleted);
-        checkedTodo();
-        fetchTodos();
-      }
-    });
-  };
   return (
     <>
       <input

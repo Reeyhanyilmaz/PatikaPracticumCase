@@ -1,64 +1,48 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import InputArea from "../Input";
 import Edit from "../Edit";
 import Delete from "../Delete";
 import Checked from "../Checked";
 import "./style.css";
+import { Spinner } from "@chakra-ui/react";
+import { useTodo } from "../../context/TodoContext";
 
 function Todos() {
-  const [todos, setTodos] = useState([]);
-  console.log("todos ", todos);
+  const { todos, loading, error } = useTodo();
 
-  //update state'lerim
-  const [isEditing, setIsEditing] = useState(false);
-  const [updateTodo, setUpdateTodo] = useState({});
-  console.log("updateTodo ", updateTodo);
-
-  //todo'ları çekiyorum.
-  const fetchTodos = async () => {
-    const { data } = await axios.get(
-      `https://6311aeb7f5cba498da835aac.mockapi.io/todos`
+  if (loading) {
+    return (
+      <div className="spinner">
+        <Spinner
+          thickness="4px"
+          speed="0.65s"
+          emptyColor="gray.200"
+          color="blue.500"
+          size="xl"
+        />
+      </div>
     );
-    const todos = data;
-    setTodos(todos);
-  };
+  }
 
-  useEffect(() => {
-    fetchTodos();
-  }, []);
+  if (error) {
+    return <div>Error!</div>;
+  }
 
   return (
     <div className="todoDiv">
       <div className="container">
-        <InputArea
-          fetchTodos={fetchTodos}
-          isEditing={isEditing}
-          setIsEditing={setIsEditing}
-          updateTodo={updateTodo}
-          setUpdateTodo={setUpdateTodo}
-        />
+        <InputArea />
         {todos.map((todo, i) => (
           <ul key={i} className="todoUl">
             <li className={todo.isCompleted ? "checked" : ""}>
-              <Checked
-                todo={todo}
-                todos={todos}
-                i={i}
-                fetchTodos={fetchTodos}
-              />
+              <Checked todo={todo} i={i} />
 
               <p className="todoWrite">{todo.content}</p>
 
               <span className="iconSpan">
                 <span>
-                  <Edit
-                    todo={todo}
-                    setIsEditing={setIsEditing}
-                    updateTodo={updateTodo}
-                    setUpdateTodo={setUpdateTodo}
-                  />
-                  <Delete id={todo.id} fetchTodos={fetchTodos} />
+                  <Edit todo={todo} />
+                  <Delete id={todo.id} />
                 </span>
               </span>
             </li>

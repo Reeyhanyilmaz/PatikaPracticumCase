@@ -1,16 +1,13 @@
-import axios from "axios";
+import { useTodo } from "../../context/TodoContext";
+import { deleteTodo } from "../../api";
 
-export default function Delete({ id, fetchTodos }) {
-  const deleteTodo = async () => {
-    const { data } = await axios.delete(
-      `https://6311aeb7f5cba498da835aac.mockapi.io/todos/${id}`
-    );
-    return data;
-  };
+export default function Delete(id) {
+  const { handleFetchTodos } = useTodo();
 
+  //for delete button
   const handleClick = () => {
-    deleteTodo();
-    fetchTodos();
+    deleteTodo(id);
+    handleFetchTodos();
   };
 
   return (
