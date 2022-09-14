@@ -1,7 +1,7 @@
 import { useTodo } from "../../context/TodoContext";
 
 export default function Edit(todo) {
-  const { setIsEditing, setUpdateTodo} = useTodo();
+  const { setIsEditing, updateTodo, setUpdateTodo} = useTodo();
 
     //for click edit button
     const handleEditClick = () => {

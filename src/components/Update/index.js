@@ -10,7 +10,7 @@ import { editTodo } from "../../api";
 function Update() {
 
 
-  const { handleFetchTodos, setIsEditing } = useTodo();
+  const { handleFetchTodos, setIsEditing , updateTodo, setUpdateTodo} = useTodo();
 
   //for click update button
   const handleUpdateClick = () => {
