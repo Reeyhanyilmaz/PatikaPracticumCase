@@ -44,7 +44,7 @@ function AddTodo() {
   };
 
   return (
-    <div>
+    <div className="inputDiv">
       <Input
         className="input"
         value={inputValue}
@@ -56,13 +56,9 @@ function AddTodo() {
           Add
         </Button>
       ) : (
-        <Button
-          className="addButton"
-          colorScheme="teal"
-          onClick={handleAddClick}
-        >
+        <button className="addButton" onClick={handleAddClick}>
           Add
-        </Button>
+        </button>
       )}
     </div>
   );

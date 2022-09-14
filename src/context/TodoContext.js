@@ -1,10 +1,10 @@
 import { useState, useEffect, useContext, createContext } from "react";
 import { fetchTodos } from "../api";
+import { Spinner } from "@chakra-ui/react";
 
 const TodoContext = createContext();
 
 const TodoProvider = ({ children }) => {
-  //loading
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [todos, setTodos] = useState([]);
@@ -32,8 +32,21 @@ const TodoProvider = ({ children }) => {
     handleFetchTodos();
   }, []);
 
+  const spinner = () => {
+    <div>
+      <Spinner
+        thickness="4px"
+        speed="0.65s"
+        emptyColor="gray.200"
+        color="gray.500"
+        size="md"
+      />
+    </div>;
+  };
+
   //gönderilecek values
   const values = {
+    spinner,
     loading,
     error,
     todos,

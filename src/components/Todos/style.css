@@ -3,43 +3,39 @@
   justify-content: center;
   flex-direction: column;
   align-content: center;
-  width: 100%; 
-}
-
-.container {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-content: center;
+  width: 40%;
 }
 
 .todoUl {
   border: 1px solid;
   border-radius: 5px;
   margin: 5px 0;
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  justify-content: flex-start;
-  width: 50%;
+  width: 100%;
 }
 
 .todoUl li {
   display: flex;
   justify-content: space-between;
+  flex-direction: row;
   padding: 20px;
   font-size: 19px;
   font-weight: 300;
 }
 
+.checked {
+  text-decoration: line-through;
+  color: red;
+}
+
 .todoWrite {
-  width: 600px;
+  width: 250px;
+  margin-left: -120px;
 }
 
 .iconSpan {
+  width: 60px;
   display: flex;
   flex-direction: row;
-  width: 60px;
   justify-content: space-around;
 }
 
@@ -55,13 +51,31 @@
   cursor: pointer;
 }
 
+.spinner {
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (min-width: 768px) and (max-width: 980px) {
+  .todoDiv{
+    width: 70%;
+  }
+}
+
 @media screen and (max-width: 767px) {
   .todoUl {
-    width: 90%;
+    width: 100%;
+  }
+
+  .todoDiv{
+    width: 100%;
   }
 
   /* li'nin yazı kısmı */
   .todoWrite {
     width: 200px;
+    margin-left: 0;
   }
 }

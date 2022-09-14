@@ -30,25 +30,21 @@ function Todos() {
 
   return (
     <div className="todoDiv">
-      <div className="container">
-        <InputArea />
-        {todos.map((todo, i) => (
-          <ul key={i} className="todoUl">
-            <li className={todo.isCompleted ? "checked" : ""}>
-              <Checked todo={todo} i={i} />
+      <InputArea />
+      {todos.map((todo, i) => (
+        <ul key={i} className="todoUl">
+          <li className={todo.isCompleted ? "checked" : ""}>
+            <Checked todo={todo} />
 
-              <p className="todoWrite">{todo.content}</p>
+            <p className="todoWrite">{todo.content}</p>
 
-              <span className="iconSpan">
-                <span>
-                  <Edit todo={todo} />
-                  <Delete id={todo.id} />
-                </span>
-              </span>
-            </li>
-          </ul>
-        ))}
-      </div>
+            <span className="iconSpan">
+              <Edit todo={todo} />
+              <Delete id={todo.id} />
+            </span>
+          </li>
+        </ul>
+      ))}
     </div>
   );
 }

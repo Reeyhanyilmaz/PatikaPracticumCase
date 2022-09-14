@@ -1,8 +1,11 @@
+.inputContainer{
+  padding: 20px;
+}
+
 .inputDiv {
   display: flex;
   justify-content: center;
   flex-direction: row;
-  padding: 20px;
 }
 
 .input {
@@ -10,7 +13,7 @@
   border-radius: 5px;
 }
 
-.addButton {
+.addButton, .updateButton, .cancelButton {
   margin-left: 20px;
   background-color: cadetblue;
   padding: 8px;

@@ -12,9 +12,10 @@ function InputArea() {
   const { isEditing } = useTodo();
 
   return (
-    <div className="inputDiv">
-      <ToastContainer />
+    <div className="inputContainer">
       {isEditing ? <Update /> : <AddTodo />}
+
+      <ToastContainer />
     </div>
   );
 }

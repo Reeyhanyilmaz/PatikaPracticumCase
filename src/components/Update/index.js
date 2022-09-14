@@ -22,41 +22,37 @@ function Update() {
   };
 
   return (
-    <div>
+    <div className="inputDiv">
+      <Input
+        className="input"
+        value={updateTodo.content}
+        onChange={(e) =>
+          setUpdateTodo({ ...updateTodo, content: e.target.value })
+        }
+      />
+
       {loading ? (
         <>
-          <Input
-            className="input"
-            value={updateTodo.content}
-            onChange={(e) =>
-              setUpdateTodo({ ...updateTodo, content: e.target.value })
-            }
-          />
           <Button
-            className="addButton"
             isLoading
+            loadingText='Updating...'
             colorScheme="teal"
             onClick={() => handleUpdateClick()}
+            width="50%"
+            marginLeft="20px"
           >
             Update
           </Button>
-          <button className="addButton" onClick={() => setIsEditing(false)}>
+          <button className="cancelButton" onClick={() => setIsEditing(false)}>
             Cancel
           </button>
         </>
       ) : (
         <>
-          <Input
-            className="input"
-            value={updateTodo.content}
-            onChange={(e) =>
-              setUpdateTodo({ ...updateTodo, content: e.target.value })
-            }
-          />
-          <button className="addButton" onClick={() => handleUpdateClick()}>
+          <button className="updateButton" onClick={() => handleUpdateClick()}>
             Update
           </button>
-          <button className="addButton" onClick={() => setIsEditing(false)}>
+          <button className="cancelButton" onClick={() => setIsEditing(false)}>
             Cancel
           </button>
         </>

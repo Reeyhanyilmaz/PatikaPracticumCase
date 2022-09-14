@@ -45,13 +45,13 @@ export const editTodo = async (updateTodo) => {
 };
 
 //for todo checked
-export const checkedTodo = async (todo, checked) => {
+export const checkedTodo = async ({todo, checked}) => {
   const { data } = await axios.put(
     `https://6311aeb7f5cba498da835aac.mockapi.io/todos/${todo.id}`,
     {
       content: todo.content,
       isCompleted: checked,
-      id: todo.id,
+      // id: todo.id,
     }
   );
   console.log("data", data);

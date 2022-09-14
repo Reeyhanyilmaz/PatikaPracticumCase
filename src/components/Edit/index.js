@@ -1,6 +1,6 @@
 import { useTodo } from "../../context/TodoContext";
 
-export default function Edit(todo) {
+export default function Edit({todo}) {
   const { setIsEditing, updateTodo, setUpdateTodo} = useTodo();
 
     //for click edit button
