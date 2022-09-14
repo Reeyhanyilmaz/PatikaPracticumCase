@@ -1,14 +1,19 @@
 import React, { useState } from "react";
-import { Input } from "@chakra-ui/react";
+import { Input, Button } from "@chakra-ui/react";
 
 //for toast alert
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
+//context
 import { useTodo } from "../../context/TodoContext";
-import { postTodo } from "../../api"
+
+//api
+import { postTodo } from "../../api";
 
 function AddTodo() {
   const [inputValue, setInputValue] = useState("Todo:");
+  const [loading, setLoading] = useState(false);
 
   const { handleFetchTodos } = useTodo();
 
@@ -30,9 +35,11 @@ function AddTodo() {
     if (inputValue === "Todo:") {
       notify();
     } else {
+      setLoading(true);
       await postTodo(inputValue);
       await handleFetchTodos();
       setInputValue("Todo:");
+      setLoading(false);
     }
   };
 
@@ -43,9 +50,20 @@ function AddTodo() {
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
       />
-      <button className="addButton" onClick={handleAddClick}>
-        Add
-      </button>
+
+      {loading === true ? (
+        <Button className="addButton" colorScheme="teal" isLoading>
+          Add
+        </Button>
+      ) : (
+        <Button
+          className="addButton"
+          colorScheme="teal"
+          onClick={handleAddClick}
+        >
+          Add
+        </Button>
+      )}
     </div>
   );
 }
