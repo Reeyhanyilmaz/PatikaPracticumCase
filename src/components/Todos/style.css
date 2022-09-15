@@ -28,8 +28,7 @@
 }
 
 .todoWrite {
-  width: 250px;
-  margin-left: -120px;
+  width: 70%;
 }
 
 .iconSpan {
@@ -71,11 +70,5 @@
 
   .todoDiv{
     width: 100%;
-  }
-
-  /* li'nin yazı kısmı */
-  .todoWrite {
-    width: 200px;
-    margin-left: 0;
   }
 }

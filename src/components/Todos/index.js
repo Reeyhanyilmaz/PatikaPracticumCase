@@ -10,20 +10,6 @@ import { useTodo } from "../../context/TodoContext";
 function Todos() {
   const { todos, loading, error } = useTodo();
 
-  if (loading) {
-    return (
-      <div className="spinner">
-        <Spinner
-          thickness="4px"
-          speed="0.65s"
-          emptyColor="gray.200"
-          color="blue.500"
-          size="xl"
-        />
-      </div>
-    );
-  }
-
   if (error) {
     return <div>Error!</div>;
   }
@@ -31,20 +17,36 @@ function Todos() {
   return (
     <div className="todoDiv">
       <InputArea />
-      {todos.map((todo, i) => (
-        <ul key={i} className="todoUl">
-          <li className={todo.isCompleted ? "checked" : ""}>
-            <Checked todo={todo} />
 
-            <p className="todoWrite">{todo.content}</p>
+      {loading ? (
+        <div className="spinner">
+          <Spinner
+            thickness="4px"
+            speed="0.65s"
+            emptyColor="gray.200"
+            color="teal.500"
+            size="xl"
+          />
+        </div>
+      ) : (
+        todos.map((todo, i) => (
+          <ul key={i} className="todoUl">
+            <li className={todo.isCompleted ? "checked" : ""}>
+            
+         
+                <Checked todo={todo} />
 
-            <span className="iconSpan">
-              <Edit todo={todo} />
-              <Delete id={todo.id} />
-            </span>
-          </li>
-        </ul>
-      ))}
+                <p className="todoWrite" >{todo.content}</p>
+              
+
+              <span className="iconSpan">
+                <Edit todo={todo} />
+                <Delete id={todo.id} />
+              </span>
+            </li>
+          </ul>
+        ))
+      )}
     </div>
   );
 }
