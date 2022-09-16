@@ -32,12 +32,9 @@ function Todos() {
         todos.map((todo, i) => (
           <ul key={i} className="todoUl">
             <li className={todo.isCompleted ? "checked" : ""}>
-            
-         
-                <Checked todo={todo} />
+              <Checked todo={todo} />
 
-                <p className="todoWrite" >{todo.content}</p>
-              
+              <p className="todoWrite">{todo.content}</p>
 
               <span className="iconSpan">
                 <Edit todo={todo} />

@@ -12,7 +12,7 @@ import { useTodo } from "../../context/TodoContext";
 import { postTodo } from "../../api";
 
 function AddTodo() {
-  const [inputValue, setInputValue] = useState("Todo:");
+  const [inputValue, setInputValue] = useState("");
   const [loading, setLoading] = useState(false);
 
   const { handleFetchTodos } = useTodo();
@@ -21,7 +21,7 @@ function AddTodo() {
   const notify = () =>
     toast.info("Please enter todo", {
       position: "top-right",
-      autoClose: 3000,
+      autoClose: 2000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
@@ -32,13 +32,13 @@ function AddTodo() {
 
   // for add button
   const handleAddClick = async () => {
-    if (inputValue === "Todo:") {
+    if (inputValue === "") {
       notify();
     } else {
       setLoading(true);
       await postTodo(inputValue);
       await handleFetchTodos();
-      setInputValue("Todo:");
+      setInputValue("");
       setLoading(false);
     }
   };

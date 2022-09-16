@@ -10,6 +10,7 @@ import { editTodo } from "../../api";
 function Update() {
   const { handleFetchTodos, setIsEditing, updateTodo, setUpdateTodo } =
     useTodo();
+
   const [loading, setLoading] = useState(false);
 
   //for click update button
@@ -35,7 +36,7 @@ function Update() {
         <>
           <Button
             isLoading
-            loadingText='Updating...'
+            loadingText="Updating..."
             colorScheme="teal"
             onClick={() => handleUpdateClick()}
             width="50%"
