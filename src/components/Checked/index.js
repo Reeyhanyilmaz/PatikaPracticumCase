@@ -9,7 +9,6 @@ import { checkedTodo } from "../../api";
 function Checked({ todo }) {
   const [loading, setLoading] = useState(false);
   const [checked, setChecked] = useState(todo.isCompleted);
-  console.log("checked ", checked);
 
   //context
   const { handleFetchTodos } = useTodo();

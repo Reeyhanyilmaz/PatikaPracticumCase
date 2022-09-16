@@ -5,7 +5,6 @@ export const fetchTodos = async () => {
   const res = await axios.get(
     `https://6311aeb7f5cba498da835aac.mockapi.io/todos`
   );
-  console.log("res", res);
   return res;
 };
 
@@ -18,7 +17,6 @@ export const postTodo = async (inputValue) => {
       isCompleted: false,
     }
   );
-  console.log("data", data);
   return data;
 };
 
@@ -40,20 +38,17 @@ export const editTodo = async (updateTodo) => {
       id: updateTodo.id,
     }
   );
-  console.log("data", data);
   return data;
 };
 
 //for todo checked
-export const checkedTodo = async ({todo, checked}) => {
+export const checkedTodo = async ({ todo, checked }) => {
   const { data } = await axios.put(
     `https://6311aeb7f5cba498da835aac.mockapi.io/todos/${todo.id}`,
     {
       content: todo.content,
       isCompleted: checked,
-      // id: todo.id,
     }
   );
-  console.log("data", data);
   return data;
 };
