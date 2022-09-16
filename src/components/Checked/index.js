@@ -18,7 +18,7 @@ function Checked({ todo }) {
     setLoading(true);
     await checkedTodo({ todo, checked: !todo.isCompleted });
     await handleFetchTodos();
-    setChecked(!todo.isCompleted);
+    setChecked(checked);
     setLoading(false);
   };
 
@@ -31,7 +31,6 @@ function Checked({ todo }) {
           emptyColor="gray.200"
           color="gray.500"
           size="md"
-          marginRight="5px"
         />
       </div>
     );
