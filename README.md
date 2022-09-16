@@ -10,3 +10,5 @@ https://todo-react-practicum.netlify.app/
 * Dark ve ligth mode seçiminde ```local storage ```'a kaydolmaktadır,
 * Proje repsonsive yapıdadır. 
 * UI tasarımda: [Chakra UI](https://chakra-ui.com/) ve pure CSS kullanıldı.
+
+<img width="1252" alt="Ekran Resmi 2022-09-16 18 17 34" src="https://user-images.githubusercontent.com/92322334/190673239-4f23ede6-24ed-4502-b368-c3f0b7e39219.png">
